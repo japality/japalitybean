@@ -69,7 +69,7 @@ The compiler MVP installs a small standard signature table:
 - `vector_len_i32(items::Vector<i32>) -> i64`
 - `vector_i32_3(first::i32, second::i32, third::i32) -> Vector<i32>`
 
-These are type-checked like normal function calls. Runtime lowering for them is part of the next backend milestone.
+These are type-checked like normal function calls. The current native Linux backend lowers a focused subset of them directly, as described in `docs/manual.md`.
 
 ## Current Compiler Guarantees
 

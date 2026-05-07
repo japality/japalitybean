@@ -6,6 +6,8 @@ The project explores whether a programming language can be made easier for large
 
 This repository contains the current public compiler prototype.
 
+New readers should start with `docs/manual.md`.
+
 ## What `jbc` Can Do
 
 - `jbc check <path>` parses and type-checks `.jb` files.
@@ -97,6 +99,7 @@ The benchmark uses `docs/llm-authoring-guide.md` and validates JapalityBean outp
 
 ## Docs
 
+- `docs/manual.md`
 - `docs/language-v0.2.md`
 - `docs/llm-authoring-guide.md`
 - `docs/runtime-memory-model.md`
