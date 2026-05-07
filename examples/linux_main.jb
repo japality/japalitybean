@@ -1,0 +1,8 @@
+@func main
+@intent: Return a Linux process exit code
+@in seed::i32
+@out result::i32
+---
+set result = seed + 7
+return result
+@end func main

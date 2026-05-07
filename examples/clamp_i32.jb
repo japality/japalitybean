@@ -1,0 +1,14 @@
+@func clamp_i32
+@intent: Clamp an i32 into inclusive bounds
+@in x::i32
+@in low::i32
+@in high::i32
+@out result::i32
+---
+set result = x
+@condition below_low
+if (x < low) -> set result = low
+@condition above_high
+if (x > high) -> set result = high
+return result
+@end func clamp_i32

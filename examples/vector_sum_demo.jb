@@ -1,0 +1,14 @@
+@func vector_sum_demo
+@intent: Construct and sum a small native vector
+@in seed::i32
+@out result::i32
+---
+let nums::Vector<i32> = vector_i32_3(seed, seed + 2, 9)
+let total::i32 = 0
+@loop item::i32 in nums
+  @condition add_all
+  if (item >= 0) -> set total = total + item
+@end loop nums
+set result = total
+return result
+@end func vector_sum_demo

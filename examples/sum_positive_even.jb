@@ -1,0 +1,17 @@
+@func sum_positive_even
+@intent: Sum positive even numbers
+@in nums::Vector<i32>
+@out result::i32
+---
+let total::i32 = 0
+@loop item::i32 in nums
+  @condition skip_non_positive
+  if (item <= 0) -> @continue
+  @condition skip_odd
+  if (item % 2 != 0) -> @continue
+  @condition add_value
+  if (item >= 0) -> set total = total + item
+@end loop nums
+set result = total
+return result
+@end func sum_positive_even
