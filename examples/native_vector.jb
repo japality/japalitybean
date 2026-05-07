@@ -1,0 +1,17 @@
+@func main
+@intent: Build and loop over a native Vector i32
+@in seed::i32
+@out result::i32
+---
+let nums::Vector<i32> = vector_i32_3(seed, seed + 2, 9)
+let total::i32 = 0
+@loop item::i32 in nums
+  @condition skip_odd
+  if (item % 2 != 0) -> @continue
+  @condition add_even
+  if (item >= 0) -> set total = total + item
+@end loop nums
+debug_i32(total)
+set result = total
+return result
+@end func main

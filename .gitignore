@@ -1,6 +1,8 @@
 target/
 *.tmp
 *.log
+*.ll
+*.bc
 *.o
 *.obj
 *.exe

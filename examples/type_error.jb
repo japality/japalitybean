@@ -1,0 +1,9 @@
+@func type_error_demo
+@intent: Demonstrate machine-readable type mismatch diagnostics
+@in seed::i32
+@out result::i32
+---
+let counter::i32 = "hello"
+set result = counter
+return result
+@end func type_error_demo

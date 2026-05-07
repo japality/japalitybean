@@ -1,0 +1,8 @@
+@func double_i32
+@intent: Double a signed 32-bit integer
+@in value::i32
+@out result::i32
+---
+set result = value + value
+return result
+@end func double_i32

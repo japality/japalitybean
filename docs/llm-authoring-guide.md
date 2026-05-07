@@ -1,6 +1,6 @@
 # JapalityBean LLM Authoring Guide
 
-This guide is written for LLMs generating JapalityBean source. It is intentionally strict because JapalityBean is new and unlikely to be present in model pretraining data.
+This guide is written for local LLMs generating JapalityBean source. It is intentionally strict and example-heavy because JapalityBean is not in most model pretraining data yet.
 
 ## Non-Negotiable Rules
 
@@ -22,6 +22,8 @@ if (condition) -> action
 
 ## Scalar Pattern
 
+Use a mutable result binding plus sequential guards.
+
 ```japalitybean
 @func clamp_i32
 @intent: Clamp an i32 into inclusive bounds
@@ -41,6 +43,8 @@ return result
 
 ## Loop Filter Pattern
 
+Use one guard per reason to skip or update. Do not combine multiple actions inside one condition.
+
 ```japalitybean
 @func sum_positive_even
 @intent: Sum positive even numbers
@@ -59,6 +63,27 @@ let total::i32 = 0
 set result = total
 return result
 @end func sum_positive_even
+```
+
+## Vector Constructor Pattern
+
+Native Linux executables currently support the fixed built-in `vector_i32_3`.
+
+```japalitybean
+@func vector_sum_demo
+@intent: Construct and sum a small native vector
+@in seed::i32
+@out result::i32
+---
+let nums::Vector<i32> = vector_i32_3(seed, seed + 2, 9)
+let total::i32 = 0
+@loop item::i32 in nums
+  @condition add_all
+  if (item >= 0) -> set total = total + item
+@end loop nums
+set result = total
+return result
+@end func vector_sum_demo
 ```
 
 ## Common Anti-Patterns
@@ -82,9 +107,12 @@ set result = 0
 @loop item::i32 in nums
 @condition below_low
 if (x < low) -> set result = low
+set result = x
 ```
 
 ## Repair Prompt Template
+
+When `jbc check --json-batch` fails, send the model this:
 
 ```text
 Fix this JapalityBean source so jbc check passes.

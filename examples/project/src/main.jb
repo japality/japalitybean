@@ -1,0 +1,9 @@
+@func main_value
+@intent: Call a helper from another file in the same project
+@in seed::i32
+@out result::i32
+---
+let doubled::i32 = double_i32(seed)
+set result = max_i32(doubled, 10)
+return result
+@end func main_value

@@ -1,0 +1,11 @@
+@func main
+@intent: Exercise native condition guards
+@in seed::i32
+@out result::i32
+---
+let value::i32 = seed + 3
+set result = value
+@condition make_answer
+if (result == 3) -> set result = 42
+return result
+@end func main

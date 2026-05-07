@@ -1,17 +1,17 @@
 # JapalityBean Test Report - 2026-05-07
 
-This report summarizes the current local test state of the JapalityBean compiler prototype.
+This report summarizes the current local test state of the JapalityBean public compiler prototype.
 
 ## Environment
 
 - OS: Linux 6.17.0-22-generic
 - Compiler implementation language: Rust
-- Prototype command: `jbc`
+- Compiler command: `jbc`
 - Report date: 2026-05-07
 
 ## Summary
 
-The internal prototype currently supports a focused compiler pipeline:
+The public prototype currently supports a focused compiler pipeline:
 
 - Lexing and parsing for the current tag-based syntax.
 - Sticky type checking for function inputs, outputs, locals, loops, assignments, calls, casts, and selected constructors.
@@ -81,3 +81,7 @@ This is only a preliminary signal, not a statistically meaningful benchmark. Mor
 ## Current Conclusion
 
 The prototype is sufficient to demonstrate the core concept: a language with explicit structure, sticky typing, named closures, and structured diagnostics can support an LLM-oriented compiler workflow while still moving toward native executable generation.
+
+## Public Source Availability
+
+The public repository includes the Rust compiler source, integration tests, smoke script, language documents, and example JapalityBean programs needed to build and try `jbc`.

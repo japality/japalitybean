@@ -1,0 +1,18 @@
+@func find_max_even
+@intent: Find the maximum even number in a given array
+@in nums::Vector<i32>
+@out result::i32
+---
+let max_even::i32 = -1
+
+@loop item::i32 in nums
+  @condition is_even
+  if (item % 2 != 0) -> @continue
+
+  @condition is_greater
+  if (item > max_even) -> set max_even = item
+@end loop nums
+
+set result = max_even
+return result
+@end func find_max_even

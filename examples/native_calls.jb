@@ -1,0 +1,19 @@
+@func add_two
+@intent: Add two to an integer
+@in value::i32
+@out result::i32
+---
+set result = value + 2
+return result
+@end func add_two
+
+@func main
+@intent: Exercise native calls and builtins
+@in seed::i32
+@out result::i32
+---
+let base::i32 = add_two(seed)
+let positive::i32 = abs_i32(-5)
+set result = max_i32(base, positive)
+return result
+@end func main

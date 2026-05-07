@@ -1,0 +1,10 @@
+@func main
+@intent: Read an argv integer and print it
+@in seed::i32
+@out result::i32
+---
+let value::i32 = seed + 7
+debug_i32(value)
+set result = value
+return result
+@end func main

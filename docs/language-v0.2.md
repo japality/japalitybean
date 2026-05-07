@@ -1,6 +1,6 @@
-# JapalityBean Language Sketch v0.2
+# JapalityBean Language v0.2
 
-JapalityBean is an experimental LLM-first systems language. Source files use the `.jb` extension.
+JapalityBean is a new LLM-first systems language. Source files use the `.jb` extension and are compiled by `jbc`.
 
 ## Goals
 
@@ -8,7 +8,7 @@ JapalityBean is an experimental LLM-first systems language. Source files use the
 - Require named closure for long-lived blocks.
 - Keep type information sticky to identifiers with `name::Type`.
 - Emit structured JSON diagnostics that an LLM can consume and repair.
-- Prefer guard-style control flow over deeply nested branch trees.
+- Prefer early return and single-action guards over nested branch trees.
 
 ## Core Syntax
 
@@ -57,7 +57,9 @@ GuardAction    = "@continue"
 - Other primitives: `bool`, `string`, `unit`
 - Collections and wrappers: `Vector<T>`, `Option<T>`, `Result<T,E>`, `Box<T>`
 
-## Built-In Functions In The Prototype
+## Built-In Functions
+
+The compiler MVP installs a small standard signature table:
 
 - `debug_i32(value::i32) -> unit`
 - `debug_string(value::string) -> unit`
@@ -67,13 +69,15 @@ GuardAction    = "@continue"
 - `vector_len_i32(items::Vector<i32>) -> i64`
 - `vector_i32_3(first::i32, second::i32, third::i32) -> Vector<i32>`
 
+These are type-checked like normal function calls. Runtime lowering for them is part of the next backend milestone.
+
 ## Current Compiler Guarantees
 
-- Lexical rejection of bare `{` and `}`.
+- Lexical rejection of bare `{` / `}`.
 - Lexical rejection of unknown `@tags`.
-- Required `@intent`, `@out`, and `---` in function declarations.
+- Required `@intent`, at least one `@in`, one `@out`, and `---`.
 - Required sticky typing for inputs, outputs, loop items, and `let`.
 - Named function closure validation.
 - Optional named loop closure validation.
+- Cross-file function resolution in `jb.toml` project mode.
 - Basic expression type checking for arithmetic, comparisons, equality, logic, calls, returns, assignments, and loop element types.
-- JSON diagnostics designed for automated repair loops.

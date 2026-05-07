@@ -1,0 +1,9 @@
+@func main
+@intent: Print a static string from native ELF data
+@in seed::i32
+@out result::i32
+---
+debug_string("hello from JapalityBean\n")
+set result = seed
+return result
+@end func main
